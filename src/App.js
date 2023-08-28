@@ -1,25 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import ReactDOM from "react-dom";
+import { NavLink } from "react-bootstrap";
 
-function App() {
+const App = () => {
+  const [accounts, setAccounts] = useState([]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <NavLink to="/accounts">Accounts</NavLink>
+      <NavLink to="/transfers">Transfers</NavLink>
+      <NavLink to="/deposits">Deposits</NavLink>
+      <NavLink to="/withdrawals">Withdrawals</NavLink>
+      <div>
+        <h1>Accounts</h1>
+        <ul>
+          {accounts.map((account) => (
+            <li key={account.id}>{account.name}</li>
+          ))}
+        </ul>
+      </div>
     </div>
   );
-}
+};
 
-export default App;
+const rootElement = document.getElementById("root");
+ReactDOM.render(<App />, rootElement);
